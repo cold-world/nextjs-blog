@@ -1,0 +1,30 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 2rem;
+  background: #ffffff;
+}
+.post_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.credits {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+
+.title {
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.author_date {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}

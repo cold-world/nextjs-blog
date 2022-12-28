@@ -1,0 +1,21 @@
+.container {
+  margin: 0 auto;
+  width: 40%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header h2 {
+  font-size: 4rem;
+}
+
+.credits {
+  display: flex;
+  flex-direction: column;
+}

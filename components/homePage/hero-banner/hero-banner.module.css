@@ -1,0 +1,22 @@
+.banner {
+  text-align: center;
+  background: #F9F2E3;
+  padding: 3rem;
+}
+
+.banner span {
+  display: block;
+  padding-bottom: 0.5rem;
+  font-weight: bolder;
+  font-size: 0.9rem;
+}
+
+.banner h2 {
+  font-size: 4rem;
+  padding-bottom: 1rem;
+}
+
+.banner p {
+  color: gray;
+  font-size: 1.2rem;
+}
