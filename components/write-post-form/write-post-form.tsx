@@ -7,6 +7,7 @@ import StatusContext from '../../context/context';
 
 export const WritePostForm = () => {
   const { setStatus } = useContext(StatusContext);
+  
   const [post, setPost] = useState<Post>({
     name: '',
     title: '',
@@ -45,6 +46,8 @@ export const WritePostForm = () => {
       setStatus('error');
     }
   };
+
+  
   return (
     <form onSubmit={handleSubmitForm} className={styles.form}>
       <h3>Got something to say?</h3>

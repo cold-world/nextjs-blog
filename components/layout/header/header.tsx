@@ -5,8 +5,10 @@ import { useRouter } from 'next/router';
 import { Button } from '../../ui/button';
 import StatusContext from '../../../context/context';
 import { signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 export const Header = () => {
+  const { status } = useSession();
   const { isLoggedIn } = useContext(StatusContext);
   const router = useRouter();
 
@@ -35,12 +37,12 @@ export const Header = () => {
         </ul>
       </nav>
       <div className={styles.buttons}>
-        {isLoggedIn && (
+        {status === 'authenticated' && (
           <Link href='/write-a-post'>
             <Button name='Write a post' />
           </Link>
         )}
-        {!isLoggedIn ? (
+        {status === 'unauthenticated' ? (
           <Link href='/auth'>
             <Button name='Login' />
           </Link>

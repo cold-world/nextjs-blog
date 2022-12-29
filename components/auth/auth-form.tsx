@@ -10,8 +10,7 @@ import { useRouter } from 'next/router';
 
 export const AuthForm = () => {
   const router = useRouter();
-  const { setStatus, setisLoginOrSignUp, isLoginOrSignUp, setisLoggedIn } =
-    useContext(StatusContext);
+  const { setStatus, setisLoginOrSignUp, isLoginOrSignUp } = useContext(StatusContext);
   const [user, setUser] = useState<User>({
     email: '',
     password: '',
@@ -31,7 +30,6 @@ export const AuthForm = () => {
         password: user.password,
       });
       if (result?.ok) {
-        setisLoggedIn(true);
         setStatus('success');
         router.push('/write-a-post');
         return;

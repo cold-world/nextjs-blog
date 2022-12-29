@@ -5,7 +5,7 @@ import { ThreeCircles } from 'react-loader-spinner';
 import ReactDOM from 'react-dom';
 
 type StatusMessageProps = {
-  status: Status | 'loading';
+  status?: Status | 'loading';
 };
 
 export const StatusMessage = ({ status }: StatusMessageProps) => {
