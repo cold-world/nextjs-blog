@@ -15,7 +15,7 @@ const convertDataToArr = (rootData: RootData): Post[] => {
   return Object.values(rootData).map((item) => item);
 };
 
-export const getAllPosts = async (): Promise<Post[]> => {
+export const getAllPosts = async () => {
   const repsonse = await fetch(process.env.FIREBASE_BD_POSTS!);
   const rootData: RootData = await repsonse.json();
   return convertDataToArr(rootData);

@@ -1,3 +1,4 @@
+import { writeToDb } from './../../lib/db';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Contact } from '../../lib/contact-utils';
 
@@ -18,14 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         email,
         text,
       };
-      const response = await fetch(process.env.FIREBASE_BD_CONTACTS!, {
-        method: 'POST',
-        headers: {
-          'Contect-Type': 'application/json',
-        },
-        body: JSON.stringify(contact),
-      });
-      if (response.ok) console.log(await response.json());
+      await writeToDb(process.env.FIREBASE_BD_CONTACTS!, contact);
     } catch (error) {
       console.log(error);
     }

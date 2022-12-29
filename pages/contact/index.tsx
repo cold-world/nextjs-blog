@@ -1,6 +1,6 @@
 import React from 'react';
-import { HeroBanner } from '../components';
-import { ContactForm } from '../components/contact/contact-form';
+import { HeroBanner } from '../../components';
+import { ContactForm } from '../../components/contact/contact-form';
 import Head from 'next/head';
 
 type ContactPageProps = {};

@@ -8,3 +8,4 @@ export * from './posts/post-detail/post-content';
 export * from './posts/post-detail/post-header';
 export * from './ui/button';
 export * from './ui/status-message';
+export * from './auth/auth-form';

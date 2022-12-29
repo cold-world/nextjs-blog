@@ -10,12 +10,11 @@ type AllPostsPageProps = {
 };
 
 const AllPostsPage = ({ allPosts }: AllPostsPageProps) => {
-  console.log(allPosts);
   return (
     <>
-    <Head>
-      <title>All post here</title>
-    </Head>
+      <Head>
+        <title>All post here</title>
+      </Head>
       <HeroBanner title='All posts' description='All posts on one page' />
       <AllPosts posts={allPosts} />
     </>

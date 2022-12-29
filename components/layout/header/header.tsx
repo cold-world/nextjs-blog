@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
 import styles from './header.module.css';
 import { useRouter } from 'next/router';
 import { Button } from '../../ui/button';
+import StatusContext from '../../../context/context';
+import { signOut } from 'next-auth/react';
 
-type HeaderProps = {};
-
-export const Header = (props: HeaderProps) => {
+export const Header = () => {
+  const { isLoggedIn } = useContext(StatusContext);
   const router = useRouter();
 
   const getLinkByPage = (): string => {
@@ -33,10 +34,19 @@ export const Header = (props: HeaderProps) => {
           </li>
         </ul>
       </nav>
-      <div>
-        <Link href='/write-a-post'>
-          <Button name='Write a post' />
-        </Link>
+      <div className={styles.buttons}>
+        {isLoggedIn && (
+          <Link href='/write-a-post'>
+            <Button name='Write a post' />
+          </Link>
+        )}
+        {!isLoggedIn ? (
+          <Link href='/auth'>
+            <Button name='Login' />
+          </Link>
+        ) : (
+          <Button onClick={() => signOut()} name='Logout' />
+        )}
       </div>
     </header>
   );

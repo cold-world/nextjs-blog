@@ -9,7 +9,6 @@ type HomePageProps = {
 };
 
 const HomePage: React.FC<HomePageProps> = ({ posts }) => {
-  console.log(posts);
   return (
     <>
       <Head>
