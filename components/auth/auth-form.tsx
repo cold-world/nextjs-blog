@@ -8,7 +8,6 @@ import { signUpHelper } from '../../lib/auth';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 
-
 export const AuthForm = () => {
   const router = useRouter();
   const { setStatus, setisLoginOrSignUp, isLoginOrSignUp } = useContext(StatusContext);
@@ -86,4 +85,3 @@ export const AuthForm = () => {
     </div>
   );
 };
-

@@ -5,6 +5,7 @@ import { getSession } from 'next-auth/react';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req: req });
+  console.log(session);
   if (!session) {
     res.status(401).json({ message: 'Not authenticated' });
     return;

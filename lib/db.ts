@@ -1,3 +1,5 @@
+import { User } from '../pages/api/auth/signup';
+
 export const fetchFromDb = async (route: string) => {
   const response = await fetch(route);
   const data = await response.json();
@@ -15,7 +17,7 @@ export const writeToDb = async (route: string, body: any) => {
   return respone;
 };
 
-export const checkExistingUser = async (credential: string) => {
+export const checkExistingUser = async (credential: string): Promise<User | false> => {
   const data = await fetchFromDb(process.env.FIREBASE_BD_USERS!);
 
   for (const key in data) {

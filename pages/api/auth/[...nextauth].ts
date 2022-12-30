@@ -1,30 +1,31 @@
 import { verifyPassword } from './../../../lib/auth';
-import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { checkExistingUser } from '../../../lib/db';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 
-export default NextAuth({
-  session: {
-    strategy: 'jwt',
-  },
-  secret: process.env.NEXTAUTH_SECRET,
+const authOptions: NextAuthOptions = {
+  secret: process.env.NEXT_PUBLIC_SECRET,
   providers: [
     CredentialsProvider({
       name: 'Login with email and password',
-      // @ts-ignore
-      async authorize(credentials) {
-        const user = await checkExistingUser(credentials!.email);
+      type: 'credentials',
+      //@ts-ignore
+      async authorize({ email, password }: Record<string, string | undefined>) {
+        if (!email || !password) {
+          return null;
+        }
+        const user = await checkExistingUser(email);
         if (!user) {
           return null;
         }
-        const isValid = await verifyPassword(credentials!.password, user.password);
+        const isValid = await verifyPassword(password, user.password);
         if (!isValid) {
           return null;
         }
-        return {
-          user: user.email,
-        };
+        if (user && isValid) return user.email;
       },
     }),
   ],
-});
+};
+
+export default NextAuth(authOptions);

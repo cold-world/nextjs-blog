@@ -4,8 +4,13 @@ import { HeroBanner } from '../../components';
 import { WritePostForm } from '../../components/write-post-form/write-post-form';
 import { getSession } from 'next-auth/react';
 import { GetServerSideProps } from 'next';
+import { Session } from 'next-auth';
 
-const WriteAPostPage = () => {
+type WriteAPostPageProps = {
+  session: Session;
+};
+
+const WriteAPostPage = ({ session }: WriteAPostPageProps) => {
   return (
     <>
       <Head>
@@ -26,10 +31,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         permanent: false,
       },
     };
-  }
-  return {
-    props: { session },
-  };
+  } else
+    return {
+      props: { session },
+    };
 };
 
 export default WriteAPostPage;
