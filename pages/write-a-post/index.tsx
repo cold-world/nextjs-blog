@@ -1,23 +1,11 @@
 import Head from 'next/head';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { HeroBanner } from '../../components';
 import { WritePostForm } from '../../components/write-post-form/write-post-form';
 import { getSession } from 'next-auth/react';
+import { GetServerSideProps } from 'next';
 
 const WriteAPostPage = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  useEffect(() => {
-    getSession().then((session) => {
-      if (!session) {
-        window.location.href = '/auth';
-      } else setIsLoading(false);
-    });
-  }, []);
-
-  if (isLoading) {
-    return <></>;
-  }
-
   return (
     <>
       <Head>
@@ -27,6 +15,21 @@ const WriteAPostPage = () => {
       <WritePostForm />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession({ req: context.req });
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/auth',
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: { session },
+  };
 };
 
 export default WriteAPostPage;

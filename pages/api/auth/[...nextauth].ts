@@ -11,7 +11,7 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       name: 'Login with email and password',
-      //@ts-ignore
+      // @ts-ignore
       async authorize(credentials) {
         const user = await checkExistingUser(credentials!.email);
         if (!user) {
