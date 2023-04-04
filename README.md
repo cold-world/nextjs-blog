@@ -1,34 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Next.js blog.
+=======================================
 
-## Getting Started
+Next.js with Typescript, Firebase database and Next auth.
 
-First, run the development server:
+Main goal -> build fullstack app.
+Features -> 
 
-```bash
-npm run dev
-# or
-yarn dev
+1. Auth/login.
+2. Send message without login.
+3. Create a post with login.
+
+
+* * *
+### [Demo](https://nextjs-blog-cold-world.vercel.app/)
+
+![Alt Text](https://i.ibb.co/dGqwF1C/Screenshot-2023-04-04-191357.jpg)
+![Alt Text](https://i.ibb.co/fx96Pvs/Screenshot-2023-04-04-191419.jpg)
+![Alt Text](https://i.ibb.co/fY0s1Yn/Screenshot-2023-04-04-191536.jpg)
+
+* * *
+
+
+
+### A piece of code
+
+```
+import { hash, compare } from 'bcryptjs';
+import { User } from '../pages/api/auth/signup';
+
+export const hashPassword = async (password: string) => {
+  const hashedPassword = await hash(password, 12);
+  return hashedPassword;
+};
+
+export const signUpHelper = async (user: User) => {
+  await fetch('/api/auth/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  });
+};
+
+export const verifyPassword = async (password: string, hashedPassword: string) => {
+  const isValid = await compare(password, hashedPassword);
+  return isValid;
+};
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Download & Installation
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```shell 
+git clone https://github.com/cold-world/nextjs-blog.git
+cd <project-dir>
+npm install
+npm run dev
+```
