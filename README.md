@@ -4,6 +4,7 @@ Next.js blog.
 Next.js with Typescript, Firebase database and Next auth.
 
 Main goal -> build fullstack app.
+
 Features -> 
 
 1. Auth/login.
